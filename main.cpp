@@ -1,10 +1,6 @@
 #include <QCoreApplication>
 #include <iostream>
 
-
-
-
-#include "node.h"
 #include "game.h"
 
 int main(int argc, char *argv[])
