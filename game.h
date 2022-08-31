@@ -36,13 +36,17 @@ private:
     sf::RectangleShape enemy;
 
     //  Game Logic
-    int points;
+    unsigned points;
     float enemySpawnTimer;
     float enemySpawnTimerMax;
     int maxEnemies;
+    bool mouseHeld;
+    int health;
+    bool endGame;
 
     //  Mouse positions
     sf::Vector2i mousePosWindow;
+    sf::Vector2f mousePosView;
 
 
     void initVariables();
@@ -64,7 +68,8 @@ public:
     void renderEnemies();
 
     //  Accessors
-    bool running();
+    bool running() const;
+    bool getEndGame() const;
 
 };
 

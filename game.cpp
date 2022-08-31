@@ -18,8 +18,16 @@ Game::~Game()
 void Game::update()
 {
     this->pollEvents();
-    this->updateMousePositions();
-    this->updateEnemies();
+
+    if(this->endGame == false)
+    {
+        this->updateMousePositions();
+        this->updateEnemies();
+    }
+
+    if(this->health <= 0)
+        this->endGame = true;
+
 }
 
 void Game::pollEvents()
@@ -63,9 +71,14 @@ void Game::render()
     this->window->display();
 }
 
-bool Game::running()
+bool Game::running() const
 {
     return this->window->isOpen();
+}
+
+bool Game::getEndGame() const
+{
+    return this->endGame;
 }
 
 void Game::updateMousePositions()
@@ -74,6 +87,7 @@ void Game::updateMousePositions()
     //  Updates the mouse positions relative to window
 
     this->mousePosWindow = sf::Mouse::getPosition(*this->window);
+    this->mousePosView = this->window->mapPixelToCoords(this->mousePosWindow);
 }
 
 void Game::spawnEnemy()
@@ -106,12 +120,48 @@ void Game::updateEnemies()
         }
     }
 
-    for(auto &e: this->enemies)
+    for(unsigned long long i = 0; i < this->enemies.size(); i++)
     {
-        e.move(0.f, 1.f);
+        bool deleted = false;
+        this->enemies[i].move(0.f, 1.f);
+
+        if(this->enemies[i].getPosition().y + (this->enemies[i].getSize().y / 2) > this->window->getSize().y)
+        {
+            this->enemies.erase(this->enemies.begin() + i);
+            this->health -= 1;
+            qDebug() << "Points: " << this->points << " | Health: " << this->health << '\n';
+        }
     }
 
+    // Check if clicked
+
+    if(sf::Mouse::isButtonPressed(sf::Mouse::Left))
+    {
+
+        if(this->mouseHeld == false)
+        {
+            this->mouseHeld = true;
+            bool deleted = false;
+            for(size_t i = 0; i < this->enemies.size() && deleted == false; i++)
+            {
+                if(this->enemies[i].getGlobalBounds().contains(this->mousePosView))
+                {
+                    deleted = true;
+                    this->enemies.erase(this->enemies.begin() + i);
+                    //  Gain points
+                    this->points += 1;
+                    qDebug() << "Points: " << this->points << " | Health: " << this->health << '\n';
+                }
+            }
+        }
+
+    }
+    else
+    {
+        this->mouseHeld = false;
+    }
 }
+
 
 void Game::renderEnemies()
 {
@@ -120,8 +170,6 @@ void Game::renderEnemies()
         this->window->draw(e);
     }
 }
-
-
 
 //  Private Functions
 void Game::initVariables()
@@ -133,9 +181,13 @@ void Game::initVariables()
     this->title = "Game 1";
 
     this->points = 0;
-    this->enemySpawnTimerMax = 1000.f;
+    this->enemySpawnTimerMax = 10.f;
     this->enemySpawnTimer = this->enemySpawnTimerMax;
     this->maxEnemies = 5;
+
+    this->mouseHeld = false;
+    this->health = 10;
+    this->endGame = false;
 
 }
 void Game::initWindow()
@@ -150,6 +202,4 @@ void Game::initEnemies()
     this->enemy.setSize(sf::Vector2f(100.f, 100.f));
     this->enemy.setScale(sf::Vector2f(0.5f, 0.5f ));
     this->enemy.setFillColor(sf::Color::Cyan);
-    this->enemy.setOutlineColor(sf::Color::Green);
-    this->enemy.setOutlineThickness(1.f);
 }

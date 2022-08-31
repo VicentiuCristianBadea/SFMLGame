@@ -1,12 +1,10 @@
-#include <QCoreApplication>
+
 #include <iostream>
 
 #include "game.h"
 
-int main(int argc, char *argv[])
+int main()
 {
-    QCoreApplication a(argc, argv);
-
     //  Init srand
     std::srand(static_cast<unsigned>(time(NULL)));
 
@@ -14,13 +12,15 @@ int main(int argc, char *argv[])
     Game game{Game()};
 
     // Game Loop
-    while(game.running())
+    while(game.running() && !game.getEndGame())
     {
         game.update();
         game.render();
     }
 
+
+
     //End of Application
 
-    return a.exec();
+    return 0;
 }
