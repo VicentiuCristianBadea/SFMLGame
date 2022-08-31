@@ -10,6 +10,8 @@
 #include <string>
 #include <iostream>
 #include <QDebug>
+#include <vector>
+#include <ctime>
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
@@ -26,10 +28,21 @@ private:
     sf::Event ev;
     sf::Uint32 style;
 
+
     std::string title;
 
     //  Game Objects
+    std::vector<sf::RectangleShape> enemies;
     sf::RectangleShape enemy;
+
+    //  Game Logic
+    int points;
+    float enemySpawnTimer;
+    float enemySpawnTimerMax;
+    int maxEnemies;
+
+    //  Mouse positions
+    sf::Vector2i mousePosWindow;
 
 
     void initVariables();
@@ -45,6 +58,10 @@ public:
     void update();
     void render();
     void pollEvents();
+    void updateMousePositions();
+    void spawnEnemy();
+    void updateEnemies();
+    void renderEnemies();
 
     //  Accessors
     bool running();

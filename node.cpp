@@ -2,16 +2,16 @@
 
 Node::Node(int x)
 {
-    val = x;
-    next = nullptr;
+    this->val = x;
+    this->next = nullptr;
 }
 
 void Node::setVal(int &x)
 {
-    val = x;
+    this->val = x;
 }
 
 int Node::getVal()
 {
-    return val;
+    return this->val;
 }

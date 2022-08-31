@@ -11,6 +11,9 @@ int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
+    //  Init srand
+    std::srand(static_cast<unsigned>(time(NULL)));
+
     //  Init Game Engine
     Game game{Game()};
 
