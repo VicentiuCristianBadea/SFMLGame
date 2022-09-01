@@ -18,8 +18,6 @@ int main()
         game.render();
     }
 
-
-
     //End of Application
 
     return 0;

@@ -34,6 +34,9 @@ private:
     //  Game Objects
     std::vector<sf::RectangleShape> enemies;
     sf::RectangleShape enemy;
+    sf::Font font;
+    std::string fontFile;
+
 
     //  Game Logic
     unsigned points;
@@ -43,6 +46,8 @@ private:
     bool mouseHeld;
     int health;
     bool endGame;
+    sf::Text pointsText;
+    sf::Text healthText;
 
     //  Mouse positions
     sf::Vector2i mousePosWindow;
@@ -66,6 +71,8 @@ public:
     void spawnEnemy();
     void updateEnemies();
     void renderEnemies();
+    void updateUI();
+    void renderUI();
 
     //  Accessors
     bool running() const;

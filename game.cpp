@@ -23,6 +23,7 @@ void Game::update()
     {
         this->updateMousePositions();
         this->updateEnemies();
+        this->updateUI();
     }
 
     if(this->health <= 0)
@@ -67,6 +68,7 @@ void Game::render()
 
     //  Draw Game Objects
     this->renderEnemies();
+    this->renderUI();
 
     this->window->display();
 }
@@ -122,7 +124,6 @@ void Game::updateEnemies()
 
     for(unsigned long long i = 0; i < this->enemies.size(); i++)
     {
-        bool deleted = false;
         this->enemies[i].move(0.f, 1.f);
 
         if(this->enemies[i].getPosition().y + (this->enemies[i].getSize().y / 2) > this->window->getSize().y)
@@ -137,7 +138,6 @@ void Game::updateEnemies()
 
     if(sf::Mouse::isButtonPressed(sf::Mouse::Left))
     {
-
         if(this->mouseHeld == false)
         {
             this->mouseHeld = true;
@@ -154,7 +154,6 @@ void Game::updateEnemies()
                 }
             }
         }
-
     }
     else
     {
@@ -162,6 +161,11 @@ void Game::updateEnemies()
     }
 }
 
+void Game::updateUI()
+{
+    this->healthText.setString("Health: " + std::to_string(this->health));
+    this->pointsText.setString("Points: " + std::to_string(this->points));
+}
 
 void Game::renderEnemies()
 {
@@ -169,6 +173,12 @@ void Game::renderEnemies()
     {
         this->window->draw(e);
     }
+}
+
+void Game::renderUI()
+{
+    this->window->draw(this->healthText);
+    this->window->draw(this->pointsText);
 }
 
 //  Private Functions
@@ -189,6 +199,22 @@ void Game::initVariables()
     this->health = 10;
     this->endGame = false;
 
+    this->fontFile = "/home/vily/Packages/Fonts/Kanit/Kanit-Black.ttf";
+
+    if(!font.loadFromFile(fontFile))
+        qDebug() << "ERROR::GAME::CPP: Failed to load the font file." << '\n';
+
+    this->healthText.setFont(font);
+    this->pointsText.setFont(font);
+
+    this->healthText.setCharacterSize(24);
+    this->pointsText.setCharacterSize(24);
+
+    this->healthText.setFillColor(sf::Color::White);
+    this->pointsText.setFillColor(sf::Color::White);
+
+    this->healthText.setPosition(10.f, 0.f);
+    this->pointsText.setPosition(10.f, 50.f);
 }
 void Game::initWindow()
 {
