@@ -7,6 +7,9 @@
     Wrapper class.
 
 */
+#include "enemies.h"
+#include "enemyfactory.h"
+
 #include <string>
 #include <iostream>
 #include <QDebug>
@@ -57,6 +60,13 @@ private:
     void initVariables();
     void initWindow();
     void initEnemies();
+
+
+
+    Enemies enemiesObj;
+    Enemy enemyObj;
+    EnemyFactory enemyFactory;
+
 
 public:
     //Constructors, Destructors

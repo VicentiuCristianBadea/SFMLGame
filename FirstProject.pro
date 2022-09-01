@@ -8,10 +8,15 @@ CONFIG -= app_bundle
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+        circleenemy.cpp \
+        enemies.cpp \
         enemy.cpp \
+        enemyfactory.cpp \
         game.cpp \
         main.cpp \
-        node.cpp
+        node.cpp \
+        squareenemy.cpp \
+        triangleenemy.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -19,28 +24,34 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
+    circleenemy.h \
+    enemies.h \
+    enemy.h \
+    enemyfactory.h \
     game.h \
-    node.h
+    node.h \
+    squareenemy.h \
+    triangleenemy.h
 
 #-----------------------------------------------------------
 # LINUX
 
-LIBS += -lsfml-audio
-LIBS += -lsfml-graphics
-LIBS += -lsfml-network
-LIBS += -lsfml-window
-LIBS += -lsfml-system
+#LIBS += -lsfml-audio
+#LIBS += -lsfml-graphics
+#LIBS += -lsfml-network
+#LIBS += -lsfml-window
+#LIBS += -lsfml-system
 
 #-----------------------------------------------------------
 #WINDOWS
 
-#LIBS += -L$$PWD/../Libraries/SFML-2.5.1/lib
-#LIBS += -L$$PWD/../Libraries/SFML-2.5.1/bin
+LIBS += -L$$PWD/../Libraries/SFML-2.5.1/lib
+LIBS += -L$$PWD/../Libraries/SFML-2.5.1/bin
 
-#CONFIG(release, debug|release): LIBS += -lsfml-audio -lsfml-graphics -lsfml-system -lsfml-network -lsfml-window
-#CONFIG(debug  , debug|release): LIBS += -lsfml-audio -lsfml-graphics -lsfml-system -lsfml-network -lsfml-window
+CONFIG(release, debug|release): LIBS += -lsfml-audio -lsfml-graphics -lsfml-system -lsfml-network -lsfml-window
+CONFIG(debug  , debug|release): LIBS += -lsfml-audio -lsfml-graphics -lsfml-system -lsfml-network -lsfml-window
 
-#INCLUDEPATH += $$PWD/../Libraries/SFML-2.5.1/include
-#DEPENDPATH += $$PWD/../Libraries/SFML-2.5.1/include
+INCLUDEPATH += $$PWD/../Libraries/SFML-2.5.1/include
+DEPENDPATH += $$PWD/../Libraries/SFML-2.5.1/include
 
 
