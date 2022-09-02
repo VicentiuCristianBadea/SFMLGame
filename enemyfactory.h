@@ -10,10 +10,10 @@ private:
 
 public:
 
-    ~EnemyFactory();
-    EnemyFactory();
+    ~EnemyFactory(){};
+    EnemyFactory(){};
 
-    static Enemy createEnemy(const int);
+    static Enemy* createEnemy(const unsigned);
 
 };
 

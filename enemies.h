@@ -9,23 +9,25 @@
 class Enemies
 {
 
-private:
-
-
-
-    static float enemySpawnTimerMax;
-    static float enemySpawnTimer;
-
 public:
 
-    Enemies();
-    static void addEnemy(Enemy&, sf::Window*);
-    static void removeEnemy(sf::Window*, int&, unsigned);
+    ~Enemies(){};
+    Enemies(){};
+
+
+    static void addEnemy(sf::Window*);
+    static void moveEnemies(sf::Window*, int&, unsigned);
     static void removeClickedEnemy(int, unsigned&, bool&, sf::Vector2f);
-    static void spawnEnemy(Enemy&, sf::Window*);
+    static void spawnEnemy(sf::Window*);
 
 
-    static std::vector<Enemy> enemyVector;
+    static std::vector<Enemy*> enemyVector;
+    static Enemy* enemy;
+
+    const static float enemySpawnTimerMax;
+    const static int maxEnemies;
+    static float enemySpawnTimer;
+
 };
 
 #endif // ENEMIES_H

@@ -6,11 +6,14 @@
 
 class SquareEnemy : public Enemy
 {
+    sf::CircleShape* enemy;
+
 public:
-    ~SquareEnemy();
+    ~SquareEnemy(){};
     SquareEnemy();
 
-    virtual void init() override;
+    void init() override;
+    sf::CircleShape* getEnemy() override;
 };
 
 #endif // SQUAREENEMY_H

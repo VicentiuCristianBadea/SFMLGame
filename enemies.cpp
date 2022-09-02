@@ -4,33 +4,41 @@
 
 #include <QDebug>
 
-Enemies::Enemies()
-{
+//  Initialize static variables
+std::vector<Enemy*> Enemies::enemyVector;
 
+const float Enemies::enemySpawnTimerMax = 10.f;
+const int Enemies::maxEnemies = 5;
+float Enemies::enemySpawnTimer = Enemies::enemySpawnTimerMax;
+Enemy* Enemies::enemy;
+
+
+//  Define Enemies Functions
+void Enemies::addEnemy(sf::Window* window)
+{
+    if(Enemies::enemyVector.size() < Enemies::maxEnemies)
+    {
+        if(Enemies::enemySpawnTimer >= Enemies::enemySpawnTimerMax)
+        {
+            spawnEnemy(window);
+            Enemies::enemySpawnTimer = 0.f;
+        }
+        else
+        {
+            Enemies::enemySpawnTimer += 1.f;
+        }
+    }
 }
 
-void Enemies::addEnemy(Enemy& enemy, sf::Window* window)
-{
-    if(enemySpawnTimer >= enemySpawnTimerMax)
-    {
-        spawnEnemy(enemy, window);
-        enemySpawnTimer = 0.f;
-    }
-    else
-    {
-        enemySpawnTimer += 1.f;
-    }
-}
-
-void Enemies::removeEnemy(sf::Window* window, int& health, unsigned points)
+void Enemies::moveEnemies(sf::Window* window, int& health, unsigned points)
 {
     for(unsigned long long i = 0; i < enemyVector.size(); i++)
     {
-        enemyVector[i].getEnemy().move(0.f, 1.f);
+        Enemies::enemyVector[i]->getEnemy()->move(0.f, 1.f);
 
-        if(enemyVector[i].getEnemy().getPosition().y + (enemyVector[i].getEnemy().getRadius() / 2) > window->getSize().y)
+        if(Enemies::enemyVector[i]->getEnemy()->getPosition().y + (Enemies::enemyVector[i]->getEnemy()->getRadius() / 2) > window->getSize().y)
         {
-            enemyVector.erase(enemyVector.begin() + i);
+            Enemies::enemyVector.erase(Enemies::enemyVector.begin() + i);
             health -= 1;
             qDebug() << "Points: " << points << " | Health: " << health << '\n';
         }
@@ -47,12 +55,12 @@ void Enemies::removeClickedEnemy(int health, unsigned& points, bool& mouseHeld, 
         {
             mouseHeld = true;
             bool deleted = false;
-            for(size_t i = 0; i < enemyVector.size() && deleted == false; i++)
+            for(size_t i = 0; i < Enemies::enemyVector.size() && deleted == false; i++)
             {
-                if(enemyVector[i].getEnemy().getGlobalBounds().contains(mousePosView))
+                if(Enemies::enemyVector[i]->getEnemy()->getGlobalBounds().contains(mousePosView))
                 {
                     deleted = true;
-                    enemyVector.erase(enemyVector.begin() + i);
+                    Enemies::enemyVector.erase(Enemies::enemyVector.begin() + i);
                     //  Gain points
                     points += 1;
                     qDebug() << "Points: " << points << " | Health: " << health << '\n';
@@ -66,21 +74,23 @@ void Enemies::removeClickedEnemy(int health, unsigned& points, bool& mouseHeld, 
     }
 }
 
-void Enemies::spawnEnemy(Enemy& enemy, sf::Window* window)
+void Enemies::spawnEnemy(sf::Window* window)
 {
 
-    enemy = EnemyFactory::createEnemy(rand() % 5);
+    Enemies::enemy = EnemyFactory::createEnemy(rand() % 5);
 
-    enemy.getEnemy().setPosition(
-        static_cast<float>(rand() % static_cast<int>(window->getSize().x - enemy.getEnemy().getRadius())),
+    //  Select color
+    Enemies::enemy->init();
+
+    Enemies::enemy->getEnemy()->setPosition(
+        static_cast<float>(rand() % static_cast<int>(window->getSize().x - Enemies::enemy->getEnemy()->getRadius())),
         0.f
     );
 
-    //  Select color
-    enemy.init();
+
 
     //  Spawn enemy
-    enemyVector.push_back(enemy);
+    Enemies::enemyVector.push_back(Enemies::enemy);
 }
 
 

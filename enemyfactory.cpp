@@ -3,26 +3,25 @@
 #include "squareenemy.h"
 #include "triangleenemy.h"
 
-EnemyFactory::EnemyFactory()
+#include <qdebug.h>
+
+Enemy* EnemyFactory::createEnemy(const unsigned option)
 {
 
-}
-
-Enemy EnemyFactory::createEnemy(const int option)
-{
+    qDebug() << option << '\n';
 
     switch(option){
     case 0:
-        return CircleEnemy();
+        return new CircleEnemy();
         break;
     case 1:
-        return TriangleEnemy();
+        return new TriangleEnemy();
         break;
     case 2:
-        return SquareEnemy();
+        return new SquareEnemy();
         break;
     default:
-        return SquareEnemy();
+        return new SquareEnemy();
         break;
 
     }

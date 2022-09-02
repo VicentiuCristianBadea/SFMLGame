@@ -4,14 +4,15 @@
 #include <SFML/Graphics.hpp>
 
 class Enemy{
-protected:
-    sf::CircleShape enemy;
+
+    sf::CircleShape* enemy;
 
 public:
     virtual ~Enemy(){};
-    virtual void init();
+    virtual void init(){};
+    virtual sf::CircleShape* getEnemy();
 
-    sf::CircleShape getEnemy();
+
 };
 
 #endif // ENEMY_H

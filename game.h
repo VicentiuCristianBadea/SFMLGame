@@ -61,11 +61,7 @@ private:
     void initWindow();
     void initEnemies();
 
-
-
-    Enemies enemiesObj;
     Enemy enemyObj;
-    EnemyFactory enemyFactory;
 
 
 public:
