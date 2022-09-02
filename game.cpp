@@ -1,7 +1,8 @@
 #include "game.h"
 
-#include <qDebug.h>
+#include <qdebug.h>
 #include <QCoreApplication>
+#include <enemies.h>
 
 //  Constructors, Destructors
 Game::Game()
@@ -49,7 +50,6 @@ void Game::pollEvents()
         default:
             break;
         }
-
     }
 }
 

@@ -5,15 +5,15 @@
 
 class TriangleEnemy : public Enemy
 {
-
-    sf::CircleShape* enemy;
-
 public:
     ~TriangleEnemy(){};
     TriangleEnemy();
 
     void init() override;
     sf::CircleShape* getEnemy() override;
+
+private:
+    sf::CircleShape* enemy;
 };
 
 #endif // TRIANGLEENEMY_H

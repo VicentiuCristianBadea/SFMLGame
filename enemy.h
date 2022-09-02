@@ -3,16 +3,15 @@
 
 #include <SFML/Graphics.hpp>
 
-class Enemy{
-
-    sf::CircleShape* enemy;
-
+class Enemy
+{
 public:
     virtual ~Enemy(){};
     virtual void init(){};
     virtual sf::CircleShape* getEnemy();
 
-
+private:
+    sf::CircleShape* enemy;
 };
 
 #endif // ENEMY_H

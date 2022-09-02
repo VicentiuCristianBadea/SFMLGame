@@ -14,7 +14,6 @@ SOURCES += \
         enemyfactory.cpp \
         game.cpp \
         main.cpp \
-        node.cpp \
         squareenemy.cpp \
         triangleenemy.cpp
 
@@ -29,7 +28,6 @@ HEADERS += \
     enemy.h \
     enemyfactory.h \
     game.h \
-    node.h \
     squareenemy.h \
     triangleenemy.h
 

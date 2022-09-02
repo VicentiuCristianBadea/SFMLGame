@@ -7,15 +7,15 @@
 
 class CircleEnemy : public Enemy
 {
-
-    sf::CircleShape* enemy;
-
 public:
     ~CircleEnemy(){};
     CircleEnemy();
 
     void init() override;
     sf::CircleShape* getEnemy() override;
+
+private:
+    sf::CircleShape* enemy;
 };
 
 #endif // CIRCLEENEMY_H

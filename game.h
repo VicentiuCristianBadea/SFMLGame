@@ -7,8 +7,6 @@
     Wrapper class.
 
 */
-#include "enemies.h"
-#include "enemyfactory.h"
 
 #include <string>
 #include <iostream>
@@ -23,7 +21,6 @@ class Game
 {
 
 private:
-
     //  Variables
     //  Window
     sf::RenderWindow* window;
@@ -75,7 +72,6 @@ public:
     //  Accessors
     bool running() const;
     bool getEndGame() const;
-
 };
 
 #endif // GAME_H
