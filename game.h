@@ -35,17 +35,12 @@ private:
     std::string title;
 
     //  Game Objects
-    std::vector<sf::RectangleShape> enemies;
-    sf::RectangleShape enemy;
     sf::Font font;
     std::string fontFile;
 
 
     //  Game Logic
     unsigned points;
-    float enemySpawnTimer;
-    float enemySpawnTimerMax;
-    int maxEnemies;
     bool mouseHeld;
     int health;
     bool endGame;
@@ -59,9 +54,6 @@ private:
 
     void initVariables();
     void initWindow();
-    void initEnemies();
-
-    Enemy enemyObj;
 
 
 public:

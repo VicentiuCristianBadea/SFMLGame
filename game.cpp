@@ -130,10 +130,6 @@ void Game::initVariables()
     this->title = "Game 1";
 
     this->points = 0;
-//    this->enemySpawnTimerMax = 10.f;
-//    this->enemySpawnTimer = this->enemySpawnTimerMax;
-//    this->maxEnemies = 5;
-
     this->mouseHeld = false;
     this->health = 10;
     this->endGame = false;
