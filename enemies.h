@@ -12,21 +12,27 @@ class Enemies
 public:
 
     ~Enemies(){};
+    Enemies(const Enemies&) = delete;
+    void operator=(const Enemies&) = delete;
+
+    static Enemies& Get();
+
+    void addEnemy(sf::Window*);
+    void moveEnemies(sf::Window*, int&, unsigned);
+    void removeClickedEnemy(int, unsigned&, bool&, sf::Vector2f);
+    void spawnEnemy(sf::Window*);
+
+    std::vector<Enemy*> getEnemyVector();
+
+
+private:
     Enemies(){};
 
-
-    static void addEnemy(sf::Window*);
-    static void moveEnemies(sf::Window*, int&, unsigned);
-    static void removeClickedEnemy(int, unsigned&, bool&, sf::Vector2f);
-    static void spawnEnemy(sf::Window*);
-
-
-    static std::vector<Enemy*> enemyVector;
-    static Enemy* enemy;
-
-    const static float enemySpawnTimerMax;
-    const static int maxEnemies;
-    static float enemySpawnTimer;
+    std::vector<Enemy*> enemyVector;
+    Enemy* enemy;
+    const float enemySpawnTimerMax{10.f};
+    float enemySpawnTimer{enemySpawnTimerMax};
+    const int maxEnemies{5};
 
 };
 

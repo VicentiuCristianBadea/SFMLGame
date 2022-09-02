@@ -1,11 +1,14 @@
 
 #include <iostream>
+#include <QCoreApplication>
 
 #include "game.h"
 
-int main()
+int main(int argc, char *argv[])
 {
     //  Init srand
+    QCoreApplication a(argc, argv);
+
     std::srand(static_cast<unsigned>(time(NULL)));
 
     //  Init Game Engine

@@ -5,6 +5,13 @@
 
 #include <qdebug.h>
 
+EnemyFactory& EnemyFactory::Get()
+{
+    static EnemyFactory instance;
+    return instance;
+}
+
+
 Enemy* EnemyFactory::createEnemy(const unsigned option)
 {
 

@@ -7,14 +7,17 @@ class EnemyFactory
 {
 private:
 
+    EnemyFactory(){};
 
 public:
 
     ~EnemyFactory(){};
-    EnemyFactory(){};
+    EnemyFactory(const EnemyFactory&) = delete;
+    void operator=(const EnemyFactory&) = delete;
 
-    static Enemy* createEnemy(const unsigned);
+    static EnemyFactory& Get();
 
+    Enemy* createEnemy(const unsigned);
 };
 
 #endif // ENEMYFACTORY_H

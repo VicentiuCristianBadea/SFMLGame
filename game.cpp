@@ -1,6 +1,7 @@
 #include "game.h"
 
-#include <QDebug>
+#include <qDebug.h>
+#include <QCoreApplication>
 
 //  Constructors, Destructors
 Game::Game()
@@ -95,9 +96,9 @@ void Game::updateMousePositions()
 
 void Game::updateEnemies()
 {
-    Enemies::addEnemy(this->window);
-    Enemies::moveEnemies(this->window, this->health, this->points);
-    Enemies::removeClickedEnemy(this->health, this->points, this->mouseHeld, this->mousePosView);
+    Enemies::Get().addEnemy(this->window);
+    Enemies::Get().moveEnemies(this->window, this->health, this->points);
+    Enemies::Get().removeClickedEnemy(this->health, this->points, this->mouseHeld, this->mousePosView);
 }
 
 void Game::updateUI()
@@ -108,7 +109,7 @@ void Game::updateUI()
 
 void Game::renderEnemies()
 {
-    for(auto &e: Enemies::enemyVector)
+    for(auto &e: Enemies::Get().getEnemyVector())
     {
         this->window->draw(*e->getEnemy());
     }
@@ -134,10 +135,11 @@ void Game::initVariables()
     this->health = 10;
     this->endGame = false;
 
-    this->fontFile = "/home/vily/Packages/Fonts/Kanit/Kanit-Black.ttf";
+    this->fontFile = "C:\\Users\\vilyb\\Documents\\QT\\build-FirstProject-Qt_6_2_4_MinGW_7_3_0_64_bit-Debug\\debug\\Kanit-Black.ttf";
+    //  Don't forget to add the linux filepath version
 
     if(!font.loadFromFile(fontFile))
-        qDebug() << "ERROR::GAME::CPP: Failed to load the font file." << '\n';
+        qDebug() << "ERROR::GAME::CPP: Failed to load the font file." << '\n' << QString::fromStdString(fontFile) << '\n';
 
     this->healthText.setFont(font);
     this->pointsText.setFont(font);
