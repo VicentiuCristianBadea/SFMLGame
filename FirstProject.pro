@@ -34,43 +34,43 @@ HEADERS += \
 #-----------------------------------------------------------
 # LINUX
 
-#LIBS += -lsfml-audio
-#LIBS += -lsfml-graphics
-#LIBS += -lsfml-network
-#LIBS += -lsfml-window
-#LIBS += -lsfml-system
+LIBS += -lsfml-audio
+LIBS += -lsfml-graphics
+LIBS += -lsfml-network
+LIBS += -lsfml-window
+LIBS += -lsfml-system
 
 #-----------------------------------------------------------
 #WINDOWS
 
-LIBS += -L$$PWD/../../Libraries/SFML-2.5.1/lib
-LIBS += -L$$PWD/../../Libraries/SFML-2.5.1/bin
+#LIBS += -L$$PWD/../../Libraries/SFML-2.5.1/lib
+#LIBS += -L$$PWD/../../Libraries/SFML-2.5.1/bin
 
-CONFIG(release, debug|release): LIBS += -lsfml-audio -lsfml-graphics -lsfml-system -lsfml-network -lsfml-window
-CONFIG(debug  , debug|release): LIBS += -lsfml-audio -lsfml-graphics -lsfml-system -lsfml-network -lsfml-window
+#CONFIG(release, debug|release): LIBS += -lsfml-audio -lsfml-graphics -lsfml-system -lsfml-network -lsfml-window
+#CONFIG(debug  , debug|release): LIBS += -lsfml-audio -lsfml-graphics -lsfml-system -lsfml-network -lsfml-window
 
-INCLUDEPATH += $$PWD/../../Libraries/SFML-2.5.1/include
-DEPENDPATH += $$PWD/../../Libraries/SFML-2.5.1/include
+#INCLUDEPATH += $$PWD/../../Libraries/SFML-2.5.1/include
+#DEPENDPATH += $$PWD/../../Libraries/SFML-2.5.1/include
 
-DISTFILES += \
-    Kanit-Black.ttf \
-    Resources/Fonts/Kanit-BlackItalic.ttf \
-    Resources/Fonts/Kanit-Bold.ttf \
-    Resources/Fonts/Kanit-BoldItalic.ttf \
-    Resources/Fonts/Kanit-ExtraBold.ttf \
-    Resources/Fonts/Kanit-ExtraBoldItalic.ttf \
-    Resources/Fonts/Kanit-ExtraLight.ttf \
-    Resources/Fonts/Kanit-ExtraLightItalic.ttf \
-    Resources/Fonts/Kanit-Italic.ttf \
-    Resources/Fonts/Kanit-Light.ttf \
-    Resources/Fonts/Kanit-LightItalic.ttf \
-    Resources/Fonts/Kanit-Medium.ttf \
-    Resources/Fonts/Kanit-MediumItalic.ttf \
-    Resources/Fonts/Kanit-Regular.ttf \
-    Resources/Fonts/Kanit-SemiBold.ttf \
-    Resources/Fonts/Kanit-SemiBoldItalic.ttf \
-    Resources/Fonts/Kanit-Thin.ttf \
-    Resources/Fonts/Kanit-ThinItalic.ttf \
-    Resources/OFL.txt
+#DISTFILES += \
+#    Kanit-Black.ttf \
+#    Resources/Fonts/Kanit-BlackItalic.ttf \
+#    Resources/Fonts/Kanit-Bold.ttf \
+#    Resources/Fonts/Kanit-BoldItalic.ttf \
+#    Resources/Fonts/Kanit-ExtraBold.ttf \
+#    Resources/Fonts/Kanit-ExtraBoldItalic.ttf \
+#    Resources/Fonts/Kanit-ExtraLight.ttf \
+#    Resources/Fonts/Kanit-ExtraLightItalic.ttf \
+#    Resources/Fonts/Kanit-Italic.ttf \
+#    Resources/Fonts/Kanit-Light.ttf \
+#    Resources/Fonts/Kanit-LightItalic.ttf \
+#    Resources/Fonts/Kanit-Medium.ttf \
+#    Resources/Fonts/Kanit-MediumItalic.ttf \
+#    Resources/Fonts/Kanit-Regular.ttf \
+#    Resources/Fonts/Kanit-SemiBold.ttf \
+#    Resources/Fonts/Kanit-SemiBoldItalic.ttf \
+#    Resources/Fonts/Kanit-Thin.ttf \
+#    Resources/Fonts/Kanit-ThinItalic.ttf \
+#    Resources/OFL.txt
 
 

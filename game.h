@@ -19,6 +19,25 @@
 
 class Game
 {
+public:
+    //Constructors, Destructors
+    Game();
+    virtual ~Game();
+
+    // Functions
+    void update();
+    void render();
+    void pollEvents();
+    void updateMousePositions();
+    void spawnEnemy();
+    void updateEnemies();
+    void renderEnemies();
+    void updateUI();
+    void renderUI();
+
+    //  Accessors
+    bool running() const;
+    bool getEndGame() const;
 
 private:
     //  Variables
@@ -51,27 +70,6 @@ private:
 
     void initVariables();
     void initWindow();
-
-
-public:
-    //Constructors, Destructors
-    Game();
-    virtual ~Game();
-
-    // Functions
-    void update();
-    void render();
-    void pollEvents();
-    void updateMousePositions();
-    void spawnEnemy();
-    void updateEnemies();
-    void renderEnemies();
-    void updateUI();
-    void renderUI();
-
-    //  Accessors
-    bool running() const;
-    bool getEndGame() const;
 };
 
 #endif // GAME_H
