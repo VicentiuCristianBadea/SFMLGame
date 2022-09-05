@@ -83,6 +83,7 @@ void Enemies::spawnEnemy(sf::Window* window)
     enemy = EnemyFactory::Get().createEnemy(rand() % 5);
 
     //  Select color
+
     enemy->init();
 
     enemy->getEnemy()->setPosition(

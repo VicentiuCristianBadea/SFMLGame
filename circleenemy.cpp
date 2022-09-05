@@ -2,7 +2,7 @@
 
 CircleEnemy::CircleEnemy()
 {
-    enemy = new sf::CircleShape();
+    this->enemy = new sf::CircleShape();
 }
 
 sf::CircleShape* CircleEnemy::getEnemy()
@@ -12,9 +12,6 @@ sf::CircleShape* CircleEnemy::getEnemy()
 
 void CircleEnemy::init()
 {
-    this->enemy->setPosition(10.f, 10.f);
-    this->enemy->setRadius(50.f);
-    this->enemy->setScale(sf::Vector2f(0.5f, 0.5f ));
-    this->enemy->setFillColor(sf::Color::Cyan);
+    this->initBase(*enemy);
 }
 
