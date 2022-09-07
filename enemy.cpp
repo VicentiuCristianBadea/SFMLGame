@@ -7,7 +7,21 @@
 #include <SFML/Window.hpp>
 
 #include "enemy.h"
+#include "game.h"
 
+
+Enemy::~Enemy()
+{
+    qDebug() << "Destroying enemy\n";
+    if(this->touchedEnd)
+    {
+        Game::removeLife();
+    }
+    else
+    {
+        Game::addPoints(this->points);
+    }
+}
 
 sf::CircleShape* Enemy::getEnemy()
 {
@@ -33,5 +47,18 @@ void Enemy::initBase(sf::CircleShape& enemy)
     enemy.setScale(sf::Vector2f(0.5f, 0.5f ));
     enemy.setFillColor(this->randomColor());
 }
+
+void Enemy::setPoints(unsigned x)
+{
+    this->points = x;
+}
+
+void Enemy::toggleTouchedEnd()
+{
+    this->touchedEnd = true;
+}
+
+
+
 
 #endif

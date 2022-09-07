@@ -14,5 +14,5 @@ void TriangleEnemy::init()
 {
     this->initBase(*enemy);
     this->enemy->setPointCount(3);
-
+    this->setPoints(7);
 }

@@ -41,8 +41,10 @@ void Enemies::moveEnemies(sf::Window* window, int& health, unsigned points)
 
         if(enemyVector[i]->getEnemy()->getPosition().y + (enemyVector[i]->getEnemy()->getRadius() / 2) > window->getSize().y)
         {
+            enemyVector[i]->toggleTouchedEnd();
+            delete enemyVector[i];
             enemyVector.erase(enemyVector.begin() + i);
-            health -= 1;
+//            health -= 1;
             qDebug() << "Points: " << points << " | Health: " << health << '\n';
         }
     }
@@ -63,9 +65,10 @@ void Enemies::removeClickedEnemy(int health, unsigned& points, bool& mouseHeld, 
                 if(enemyVector[i]->getEnemy()->getGlobalBounds().contains(mousePosView))
                 {
                     deleted = true;
+                    delete enemyVector[i];
                     enemyVector.erase(enemyVector.begin() + i);
                     //  Gain points
-                    points += 1;
+//                    points += 1;
                     qDebug() << "Points: " << points << " | Health: " << health << '\n';
                 }
             }

@@ -13,5 +13,6 @@ sf::CircleShape* CircleEnemy::getEnemy()
 void CircleEnemy::init()
 {
     this->initBase(*enemy);
+    this->setPoints(2);
 }
 

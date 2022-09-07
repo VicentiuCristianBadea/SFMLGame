@@ -14,6 +14,7 @@ void SquareEnemy::init()
 {
     this->initBase(*enemy);
     this->enemy->setPointCount(4);
+    this->setPoints(5);
 }
 
 

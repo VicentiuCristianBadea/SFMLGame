@@ -135,9 +135,9 @@ void Game::initVariables()
     this->health = 10;
     this->endGame = false;
 
-//    this->fontFile = "C:\\Users\\vilyb\\Documents\\QT\\build-FirstProject-Qt_6_2_4_MinGW_7_3_0_64_bit-Debug\\debug\\Kanit-Black.ttf";
+    this->fontFile = "C:\\Users\\vilyb\\Documents\\QT\\build-FirstProject-Qt_6_2_4_MinGW_7_3_0_64_bit-Debug\\debug\\Kanit-Black.ttf";
     //  Don't forget to add the linux filepath version
-    this->fontFile = "/home/vily/Packages/Fonts/Kanit/Kanit-Black.ttf";
+//    this->fontFile = "/home/vily/Packages/Fonts/Kanit/Kanit-Black.ttf";
 
     if(!font.loadFromFile(fontFile))
         qDebug() << "ERROR::GAME::CPP: Failed to load the font file." << '\n' << QString::fromStdString(fontFile) << '\n';
@@ -160,4 +160,23 @@ void Game::initWindow()
     this->window->setFramerateLimit(60);
 }
 
+void Game::addPoints(unsigned x)
+{
+    Game::points += x;
+}
+
+void Game::removeLife()
+{
+    Game::health--;
+}
+
+int Game::getHealth()
+{
+    return health;
+}
+
+unsigned Game::getPoints()
+{
+    return points;
+}
 

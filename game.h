@@ -35,9 +35,17 @@ public:
     void updateUI();
     void renderUI();
 
+    static void addPoints(unsigned);
+    static void removeLife();
+    static unsigned getPoints();
+    static int getHealth();
+
     //  Accessors
     bool running() const;
     bool getEndGame() const;
+
+    inline static unsigned points = 0;
+    inline static int health = 10;
 
 private:
     //  Variables
@@ -56,9 +64,9 @@ private:
 
 
     //  Game Logic
-    unsigned points;
+
     bool mouseHeld;
-    int health;
+
     bool endGame;
     sf::Text pointsText;
     sf::Text healthText;
