@@ -18,18 +18,18 @@ public:
     static Enemies& Get();
 
     void addEnemy(sf::Window*);
-    void moveEnemies(sf::Window*, int&, unsigned);
-    void removeClickedEnemy(int, unsigned&, bool&, sf::Vector2f);
+    void moveEnemies(sf::Window*);
+    void removeClickedEnemy(bool&, sf::Vector2f);
     void spawnEnemy(sf::Window*);
 
-    std::vector<Enemy*> getEnemyVector();
+    std::vector<std::shared_ptr<Enemy>> getEnemyVector();
 
 
 private:
     Enemies(){};
 
-    std::vector<Enemy*> enemyVector;
-    Enemy* enemy;
+    std::vector<std::shared_ptr<Enemy>> enemyVector;
+    std::shared_ptr<Enemy> enemy;
     const float enemySpawnTimerMax{10.f};
     float enemySpawnTimer{enemySpawnTimerMax};
     const int maxEnemies{5};

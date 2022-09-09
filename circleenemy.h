@@ -12,10 +12,10 @@ public:
     CircleEnemy();
 
     void init() override;
-    sf::CircleShape* getEnemy() override;
+    std::shared_ptr<sf::CircleShape> getEnemy() override;
 
 private:
-    sf::CircleShape* enemy;
+    std::shared_ptr<sf::CircleShape> enemy;
 };
 
 #endif // CIRCLEENEMY_H

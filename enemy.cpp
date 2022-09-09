@@ -9,6 +9,10 @@
 #include "enemy.h"
 #include "game.h"
 
+Enemy::Enemy()
+{
+    this->touchedEnd = false;
+}
 
 Enemy::~Enemy()
 {
@@ -23,7 +27,7 @@ Enemy::~Enemy()
     }
 }
 
-sf::CircleShape* Enemy::getEnemy()
+std::shared_ptr<sf::CircleShape> Enemy::getEnemy()
 {
     return this->enemy;
 }

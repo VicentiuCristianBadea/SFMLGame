@@ -5,31 +5,33 @@
 
 #include <qdebug.h>
 
-EnemyFactory& EnemyFactory::Get()
-{
-    static EnemyFactory instance;
-    return instance;
-}
+namespace BadGuys{
+    EnemyFactory& EnemyFactory::Get()
+    {
+        static EnemyFactory instance;
+        return instance;
+    }
 
 
-Enemy* EnemyFactory::createEnemy(const unsigned option)
-{
+    std::shared_ptr<Enemy> EnemyFactory::createEnemy(const unsigned option)
+    {
 
-    qDebug() << option << '\n';
+        qDebug() << option << '\n';
 
-    switch(option){
-    case 0:
-        return new CircleEnemy();
-        break;
-    case 1:
-        return new TriangleEnemy();
-        break;
-    case 2:
-        return new SquareEnemy();
-        break;
-    default:
-        return new SquareEnemy();
-        break;
-
+        switch(option)
+        {
+            case BadGuys::CIRCLE:
+                return std::make_shared<CircleEnemy>();
+                break;
+            case BadGuys::TRIANGLE:
+                return std::make_shared<TriangleEnemy>();
+                break;
+            case BadGuys::SQUARE:
+                return std::make_shared<SquareEnemy>();
+                break;
+            default:
+                return std::make_shared<SquareEnemy>();
+                break;
+        }
     }
 }

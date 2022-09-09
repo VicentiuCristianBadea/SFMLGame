@@ -2,14 +2,15 @@
 #define ENEMY_H
 
 #include <SFML/Graphics.hpp>
+#include <memory>
 
 class Enemy
 {
 public:
-    Enemy(){this->touchedEnd = false;};
-    ~Enemy();
+    Enemy();
+    virtual ~Enemy();
     virtual void init(){};
-    virtual sf::CircleShape* getEnemy();
+    virtual std::shared_ptr<sf::CircleShape> getEnemy();
 
     const sf::Color& randomColor();
 
@@ -21,7 +22,7 @@ public:
 
 private:
 
-    sf::CircleShape* enemy;
+    std::shared_ptr<sf::CircleShape> enemy;
     unsigned points;
     bool touchedEnd;
 };

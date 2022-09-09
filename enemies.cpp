@@ -1,11 +1,12 @@
 #include "enemies.h"
 
 #include "enemyfactory.h"
+#include "game.h"
 
 #include <QDebug>
 
 
-std::vector<Enemy*> Enemies::getEnemyVector()
+std::vector<std::shared_ptr<Enemy>> Enemies::getEnemyVector()
 {
     return enemyVector;
 }
@@ -33,7 +34,7 @@ void Enemies::addEnemy(sf::Window* window)
     }
 }
 
-void Enemies::moveEnemies(sf::Window* window, int& health, unsigned points)
+void Enemies::moveEnemies(sf::Window* window)
 {
     for(unsigned long long i = 0; i < enemyVector.size(); i++)
     {
@@ -42,17 +43,15 @@ void Enemies::moveEnemies(sf::Window* window, int& health, unsigned points)
         if(enemyVector[i]->getEnemy()->getPosition().y + (enemyVector[i]->getEnemy()->getRadius() / 2) > window->getSize().y)
         {
             enemyVector[i]->toggleTouchedEnd();
-            delete enemyVector[i];
             enemyVector.erase(enemyVector.begin() + i);
-//            health -= 1;
-            qDebug() << "Points: " << points << " | Health: " << health << '\n';
+            qDebug() << "Points: " << Game::getPoints() << " | Health: " << Game::getHealth() << '\n';
         }
     }
 
 }
 
 
-void Enemies::removeClickedEnemy(int health, unsigned& points, bool& mouseHeld, sf::Vector2f mousePosView)
+void Enemies::removeClickedEnemy(bool& mouseHeld, sf::Vector2f mousePosView)
 {
     if(sf::Mouse::isButtonPressed(sf::Mouse::Left))
     {
@@ -65,11 +64,8 @@ void Enemies::removeClickedEnemy(int health, unsigned& points, bool& mouseHeld, 
                 if(enemyVector[i]->getEnemy()->getGlobalBounds().contains(mousePosView))
                 {
                     deleted = true;
-                    delete enemyVector[i];
                     enemyVector.erase(enemyVector.begin() + i);
-                    //  Gain points
-//                    points += 1;
-                    qDebug() << "Points: " << points << " | Health: " << health << '\n';
+                    qDebug() << "Points: " << Game::getPoints() << " | Health: " << Game::getHealth() << '\n';
                 }
             }
         }
@@ -83,12 +79,8 @@ void Enemies::removeClickedEnemy(int health, unsigned& points, bool& mouseHeld, 
 void Enemies::spawnEnemy(sf::Window* window)
 {
 
-    enemy = EnemyFactory::Get().createEnemy(rand() % 5);
-
-    //  Select color
-
+    enemy = BadGuys::EnemyFactory::Get().createEnemy(rand() % 5);
     enemy->init();
-
     enemy->getEnemy()->setPosition(
         static_cast<float>(rand() % static_cast<int>(window->getSize().x - enemy->getEnemy()->getRadius())),
         0.f

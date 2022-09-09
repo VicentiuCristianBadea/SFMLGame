@@ -2,10 +2,10 @@
 
 SquareEnemy::SquareEnemy()
 {
-    this->enemy = new sf::CircleShape();
+    this->enemy = std::make_shared<sf::CircleShape>();
 }
 
-sf::CircleShape* SquareEnemy::getEnemy()
+std::shared_ptr<sf::CircleShape> SquareEnemy::getEnemy()
 {
     return this->enemy;
 }

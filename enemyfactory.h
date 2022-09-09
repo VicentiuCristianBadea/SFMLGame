@@ -3,18 +3,25 @@
 
 #include "enemy.h"
 
-class EnemyFactory
-{
-public:
-    ~EnemyFactory(){};
-    EnemyFactory(const EnemyFactory&) = delete;
-    void operator=(const EnemyFactory&) = delete;
+namespace BadGuys{
 
-    static EnemyFactory& Get();
-    Enemy* createEnemy(const unsigned);
+    enum factoryOptions{SQUARE, TRIANGLE, CIRCLE};
 
-private:
-    EnemyFactory(){};
+
+    class EnemyFactory
+    {
+    public:
+        ~EnemyFactory(){};
+        EnemyFactory(const EnemyFactory&) = delete;
+        void operator=(const EnemyFactory&) = delete;
+
+        static EnemyFactory& Get();
+        std::shared_ptr<Enemy> createEnemy(const unsigned);
+
+    private:
+        EnemyFactory(){};
 };
+
+}
 
 #endif // ENEMYFACTORY_H

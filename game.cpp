@@ -97,8 +97,8 @@ void Game::updateMousePositions()
 void Game::updateEnemies()
 {
     Enemies::Get().addEnemy(this->window);
-    Enemies::Get().moveEnemies(this->window, this->health, this->points);
-    Enemies::Get().removeClickedEnemy(this->health, this->points, this->mouseHeld, this->mousePosView);
+    Enemies::Get().moveEnemies(this->window);
+    Enemies::Get().removeClickedEnemy(this->mouseHeld, this->mousePosView);
 }
 
 void Game::updateUI()
